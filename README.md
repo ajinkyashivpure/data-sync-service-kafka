@@ -11,12 +11,12 @@ either run the scripts or use the curl commands :
 *for curl commands , you have two approaches :
 
 1. referencing through the config files :
-   # Deploy PostgreSQL source connector
+    Deploy PostgreSQL source connector
    curl -X POST http://localhost:8083/connectors \
    -H "Content-Type: application/json" \
    -d @config/postgresql-source.json
 
-    # Deploy MongoDB sink connector
+     Deploy MongoDB sink connector
     curl -X POST http://localhost:8083/connectors \
     -H "Content-Type: application/json" \
     -d @config/mongodb-sink.json
