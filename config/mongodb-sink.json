@@ -1,0 +1,22 @@
+{
+  "name": "mongodb-sink",
+  "config": {
+    "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+    "tasks.max": "1",
+    "topics": "postgres-server.public.users",
+    "connection.uri": "mongodb://root:example@mongodb:27017",
+    "database": "targetdb",
+    "collection": "users",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "true",
+    "value.converter.schemas.enable": "true",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "true",
+    "change.data.capture.handler": "com.mongodb.kafka.connect.sink.cdc.debezium.DebeziumCdcHandler",
+    "document.id.strategy": "com.mongodb.kafka.connect.sink.processor.id.strategy.PartialKeyStrategy",
+    "document.id.strategy.partial.key.projection.type": "AllowList",
+    "document.id.strategy.partial.key.projection.list": "id"
+  }
+}
